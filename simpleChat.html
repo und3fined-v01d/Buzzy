@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Buzzy</title>
+  <meta name="description" content="Buzzy is a simple peer-to-peer video chat and meeting application.">
+  <meta name="author" content="AlQaholic007" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="style/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://rawgit.com/onsip/SIP.js/0.8.0/dist/sip-0.8.0.js"></script>
+  <script src="code/code.js"></script>
+
+</head>
+
+<body>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Private Call</a></li>
+  </ol>
+
+  <div class="container" style="margin-top: 50px; display: none;" id="loading-body">
+
+    <center>
+
+      <div class="jumbotron">
+        <h1 class="display-3">Private call</h1>
+        <p class="lead">Start a private session with Buzzy's Private Call.</p>
+        <span class="badge badge-primary" style="float: right;">Try now</span>
+        <hr class="my-4">
+
+      </div>
+
+      <img src="assets/loading.gif">
+      <h4>Waiting for a call...</h4>
+
+    </center>
+
+  </div>
+
+  <!-- container open -->
+  <div class="container" style="margin-top: 50px;" id="main-container">
+
+    <!-- section 1 -->
+    <div class="row" id="index-header">
+      <div class="col-sm jumbotron">
+
+        <center>
+
+          <h1 class="display-3">Private call</h1>
+          <p class="lead">Start a private session with Buzzy's Private Call.</p>
+
+          <span class="badge badge-primary" style="float: right;">Try now</span>
+
+
+          <hr class="my-4">
+
+          <!-- enter username -->
+          <form>
+            <fieldset>
+              <div class="form-group">
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i> </span>
+                  </div>
+                  <input type="text" class="form-control" id="username" placeholder="Enter your username"
+                    style="width: 100%;" aria-describedby="basic-addon1">
+
+                </div>
+
+                <div class="alert alert-dismissible alert-primary">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Create any session password you want and share it with others if you are the host!</strong>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i> </span>
+                  </div>
+                  <input type="password" class="form-control" id="password" placeholder="Enter session password"
+                    style="width: 100%;" aria-describedby="basic-addon2">
+                </div>
+
+          </form>
+
+
+
+          <div class="alert alert-dismissible alert-danger" id="alertNotification" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Please fill both fields!</strong>
+          </div>
+
+          <button type="button" class="btn btn-rounded btn-success btn-lg" onclick="createRoom()"><i
+              class="fa fa-video-camera"></i>
+            Call someone</button>
+          <button type="button" class="btn btn-rounded btn-danger btn-lg" onclick="createUAandRecieveCall()"><i
+              class="fa fa-spinner"></i> Wait for a call</button>
+
+        </center>
+
+      </div>
+
+      <div class="col-sm">
+        <div class="text-center">
+          <img src="assets/undraw_video_call_kxyp.png" style="width:500px;height:400px;" class="rounded" alt="...">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- section 1 close -->
+
+
+
+
+
+
+    <!-- section2 open -->
+    <div class="container-fluid" id="video-stream" style="display: none;">
+
+      <!-- header -->
+      <div class="row">
+        <div class="col-sm">
+
+          <center>
+            <div class="jumbotron">
+              <h1 class="display-3">Private call</h1>
+              <p class="lead">Start a private session with Buzzy's Private Call.</p>
+
+              <span class="badge badge-primary" style="float: right;">Try now</span>
+
+
+              <hr class="my-4">
+
+            </div>
+            <br>
+            <div>
+
+          </center>
+
+        </div>
+      </div>
+
+      <!-- add participant -->
+      <div class="row" id="add-participant-body">
+        <div class="col-sm">
+          <div class="card card-body">
+            <form>
+              <fieldset>
+
+                <div class="alert alert-dismissible alert-success">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Ask participant for their username and share your session key if you are the
+                    host!</strong>
+                </div>
+
+                <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Make sure that the user you are calling is already registered and in the "wait for a call" room!</strong>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3"><i class="fa fa-plus"></i> </span>
+                  </div>
+                  <input type="text" class="form-control" id="username-participant" placeholder="Enter calle's username"
+                    aria-describedby="basic-addon3">
+
+                </div>
+
+            </form>
+            <button onclick="addParticipant()" type="button" class="btn btn-rounded btn-success btn-lg">Send
+              Call</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-dismissible alert-primary" id="waiting-call" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Waiting for call...</strong>
+      </div>
+
+      <div class="alert alert-dismissible alert-primary" id="incoming-call-body" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Incoming video call request! Allow video and audio permission to accept call.</strong>
+      </div>
+
+
+      <div class="alert alert-dismissible alert-danger" id="call-disconnected-body" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p>Either user was not online...</p>
+        <strong>Call unsuccessfull! Please create a new session key and call again</strong>
+      </div>
+
+
+
+      <div id="call-during-connected-body" style="display: none;">
+        <center>
+          <img src="assets/loading.gif">
+          <h4>Connecting...</h4>
+
+        </center>
+
+      </div>
+
+      <div class="alert alert-dismissible alert-success" id="call-connected-body" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Call connected succesfully! Click on "Start Video Chatting" button below to start video</strong>
+      </div>
+
+      <div class="alert alert-dismissible alert-danger" id="call-terminated-body" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+        <p>Either network issue or other user refreshed or left the page</p>
+        <strong>Call terminated! Please create a new session key or contact host</strong>
+      </div>
+
+      <!-- main video body -->
+      <div class="row container" id="main-video-body" style="display: none;">
+
+        <div style="display:none" id="start-video-call-body">
+
+          <button onclick="startVideoCall()" type="button" class="btn btn-rounded btn-lg btn-primary"><i
+              class="fa fa-video-camera"></i> Start Video Chatting
+
+          </button>
+
+          <div class="spinner-grow text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <div class="row">
+            <div class="col-sm" style="margin-top: 10px;">
+              <center>
+
+                <button onclick="goHome()" type="button" class="btn btn-rounded btn-success"><i class="fa fa-home"></i>
+                  Home</button>
+                <button onclick="endcall()" type="button" class="btn btn-rounded btn-danger"><i
+                    class="fa fa-circle"></i>
+                  End
+                  Call</button>
+                <br>
+                <br>
+              </center>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:none" id="start-video-call-body-recieve">
+          <button onclick="startVideoCallRecieve()" type="button" class="btn btn-rounded btn-lg btn-primary"><i
+              class="fa fa-video-camera"></i> Start Video Chatting
+          </button>
+
+          <div class="spinner-grow text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm" style="margin-top: 10px;">
+              <center>
+
+                <button onclick="goHome()" type="button" class="btn btn-rounded btn-success"><i class="fa fa-home"></i>
+                  Home</button>
+                <button onclick="endcall()" type="button" class="btn btn-rounded btn-danger"><i
+                    class="fa fa-circle"></i>
+                  End
+                  Call</button>
+                <br>
+                <br>
+              </center>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="card card-body col-md-6 shadow-lg p-3 mb-5 bg-white rounded">
+            <video id="remoteVideo" controls></video>
+          </div>
+
+          <div class="card card-body col-md-6 shadow-lg p-3 mb-5 bg-white rounded">
+            <video id="localVideo" muted="muted" controls></video>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- section2 close -->
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3"> <a href="https://github.com/AlQaholic007"><i
+            class="fa fa-github"></i></a>
+
+        <a href="https://sohamp.dev/"> Soham Parekh </a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+
+  </div>
+  <!-- container close -->
+
+
+
+</body>
+
+</html>

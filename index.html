@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Buzzy</title>
+  <meta name="description" content="Buzzy is a simple peer-to-peer video chat and meeting application.">
+  <meta name="author" content="AlQaholic007" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="style/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+
+    function showInstruction() {
+
+      document.getElementById("instruction-body").style.display = "block";
+      document.getElementById("main-container").style.display = "none";
+      document.getElementById("how_to_show_btn").style.display = "none";
+
+
+    }
+
+  </script>
+</head>
+
+<body>
+
+  <div style="display:none" id="instruction-body">
+
+    <div class="jumbotron">
+      <center>
+        <h1 class="display-3">Buzzy 🐝</h1>
+        <p class="lead">Buzzy is a simple peer-to-peer video chat and meeting application.</p>
+        <span class="badge badge-primary" style="float: right;">Try now</span>
+        <hr class="my-4">
+      </center>
+
+      <div class="alert alert-dismissible alert-primary">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Never refresh the page after being connected</strong>
+      </div>
+
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Always allow video and audio permissions</strong>
+      </div>
+
+      <hr class="my-4">
+
+
+      <h4>Instructions for "Private Call"</h4>
+      <hr class="my-4">
+
+      <small>Step 1</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+      </div>
+      <p class="table-danger">One of the two person has to intiate a <a href="simpleChat.html">"Private Call"</a> by choosing a username and password.
+        Make sure to remember the password!.  The initiator then has to  click on "Call
+        someone". You will be taken to a add participant page. The participant will not appear in the list until he has has successfully the step #2.
+      </p>
+
+      <small>Step 2</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+      </div>
+      <p class="table-success">Click on <a href="simpleChat.html">"Private Call"</a> and choose an appropriate username. However while entering a password, make sure 
+        to use the same password as the initiator.<br>
+        Share your chosen username with initiator and click "Wait for a call". You will be
+        directed to a waiting area where you can wait until the initiator adds you to the call.
+      </p>
+
+      <small>Step 3</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
+      </div>
+      <p class="table-primary">
+        To add a participant, intiator can fill his/her username.
+        Click on "Add participant" and allow all permissions for audio and video.
+      </p>
+
+      <small>Step 4</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
+      </div>
+      <p class="table-info">
+        Both the participants will be presented with series of log messages pertaining to the connection. Click "Start video call".
+      </p>
+
+      <small>Step 5</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>
+      <p class="table-warning">
+        Enjoy!<br>
+        Make sure not to refresh the page.
+      </p>
+
+      <p class="lead">
+        <a class="btn btn-primary" href="index.html" role="button">I got it!</a>
+      </p>
+
+      <hr class="my-4">
+
+      <h4>Instructions for "Group Call"</h4>
+      <hr class="my-4">
+
+      <small>Step 1</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+      </div>
+      <p class="table-danger">Initiator can start a <a href="groupChat.html">"Group Call"</a>,
+        by first choosing a username and password. Make sure to remember this password. Now click on "Call
+        someone". You will be taken to an add participant page. Participants will appear only after they have completed the #2.
+      </p>
+
+      <small>Step 2</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+      </div>
+      <p class="table-success">To be added as a participant to a <a href="groupChat.html">"Group Call"</a>, choose an appropriate username however 
+        make sure to use the password shared by the initiator of the group call.<br>
+        Share the chosen username with the host. Now click "Wait for a
+        call". You will be
+        directed to a waiting area where you can wait till host has added you.
+      </p>
+
+      <small>Step 3</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
+      </div>
+      <p class="table-primary">
+        The host can add a participant by filling the appropriate username.
+        Then click "Add participant" and allow all permissions for audio and video.
+      </p>
+
+      <small>Step 4</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
+      </div>
+      <p class="table-info">
+        The host can add more participants by using the
+        "Add participant" button
+      </p>
+
+      <small>Step 5</small>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>
+      <p class="table-warning">
+        Enjoy!<br>
+        Make sure not to refresh the page.
+      </p>
+
+      <p class="lead">
+        <a class="btn btn-primary" href="index.html" role="button">I got it!</a>
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <button id="how_to_show_btn" type="button" class="btn btn-primary" onclick="showInstruction()">Help <i
+      class="fa fa-question-circle"></i> </button>
+
+  <div class="container" style="margin-top: 50px;" id="main-container">
+
+    <div class="row">
+      <div class="col-sm jumbotron">
+
+        <center>
+          <h1 class="display-3">Buzzy 🐝</h1>
+          <p class="lead">Buzzy is a simple peer-to-peer video chat and meeting application.</p>
+          <span class="badge badge-primary" style="float: right;">Try now!</span>
+          <hr class="my-4">
+
+          <a type="button" href="simpleChat.html" class="btn btn-rounded btn-success btn-lg"><i class="fa fa-user"></i>
+            Private Call</a>
+
+          <a type="button" href="groupChat.html" class="btn btn-rounded btn-danger btn-lg"><i class="fa fa-users"></i>
+            Group Call</a>
+
+        </center>
+
+      </div>
+
+      <div class="col-sm">
+        <div class="text-center">
+          <img src="assets/undraw_social_dashboard_k3pt.png" style="width:500px;height:400px;" class="rounded"
+            alt="...">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3"> <a href="https://github.com/AlQaholic007"><i
+            class="fa fa-github"></i></a>
+
+        <a href="https://sohamp.dev/"> Soham Parekh</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+
+  </div>
+
+</body>
+
+</html>
